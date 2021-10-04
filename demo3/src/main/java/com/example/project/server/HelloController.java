@@ -43,6 +43,7 @@ public class HelloController {
 //    @GetMapping(value = "/availableOperations", produces = "application/json")
 //    public CalculationResponse getAvailableOperations() {
 //        return new CalculationResponse("Supports addition +, substraction -, multiplication * and division /");
-//    }
+//    } TEST
+
 
 }
