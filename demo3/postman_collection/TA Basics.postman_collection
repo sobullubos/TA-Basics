@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "592e7737-0832-44ee-a3e4-1767de2ebd55",
+		"name": "TA Basics",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "calc_addition1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"   pm.response.to.have.header(\"Content-Type\");\r",
+							"   pm.response.to.be.header(\"Content-Type\", \"application/json\");\r",
+							"});\r",
+							"\r",
+							"var jsonResponse = pm.response.json();\r",
+							"pm.collectionVariables.set(\"additionResult_1\", jsonResponse.result);\r",
+							"tests[\"3 + 2 = 5\"] = pm.collectionVariables.get(\"additionResult_1\") === (3 + 2);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"param1\": 3,\r\n  \"param2\": 2,\r\n  \"operation\": \"+\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "calc_addition2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"\r",
+							"pm.test(\"Content-Type is correct\", function () {\r",
+							"   pm.response.to.have.header(\"Content-Type\");\r",
+							"   pm.response.to.be.header(\"Content-Type\", \"application/json\");\r",
+							"});\r",
+							"\r",
+							"var jsonResponse = pm.response.json();\r",
+							"pm.collectionVariables.set(\"additionResult_2\", jsonResponse.result);\r",
+							"tests[\"7 + 3 = 10\"] = pm.collectionVariables.get(\"additionResult_2\") === (7 + 3);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"param1\": 7,\r\n  \"param2\": 3,\r\n  \"operation\": \"+\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "calc_multiplication1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"\r",
+							"var jsonResponse = pm.response.json();\r",
+							"pm.collectionVariables.set(\"multiplicationResult_1\", jsonResponse.result);\r",
+							"tests[\"5 * 10 = 50\"] = pm.collectionVariables.get(\"multiplicationResult_1\") === 50;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"param1\": {{additionResult_1}},\r\n  \"param2\": {{additionResult_2}},\r\n  \"operation\": \"*\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "calc_division1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"\r",
+							"var jsonResponse = pm.response.json();\r",
+							"pm.collectionVariables.set(\"multiplicationResult_1\", jsonResponse.result);\r",
+							"tests[\"5 / 10 = 0.5\"] = pm.collectionVariables.get(\"multiplicationResult_1\") === 5 / 10;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"param1\": {{additionResult_1}},\r\n  \"param2\": {{additionResult_2}},\r\n  \"operation\": \"/\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "calc_division by zero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"\r",
+							"var jsonResponse = pm.response.json();\r",
+							"tests[\"Division by 0 not possible\"] = jsonResponse.errorMessage === \"Cannot divide something by 0.\";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"param1\": 4,\r\n  \"param2\": 0,\r\n  \"operation\": \"/\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/calculator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calculator"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "additionResult_1",
+			"value": ""
+		},
+		{
+			"key": "additionResult_2",
+			"value": ""
+		},
+		{
+			"key": "multiplicationResult_1",
+			"value": ""
+		}
+	]
+}
